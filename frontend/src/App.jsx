@@ -1,11 +1,24 @@
-
+import { Router, Route } from "react-router-dom"
+import Layout from "./Layout/Layout"
+import Home from "./pages/Home"
 
 function App() {
 
 
   return (
     <>
-      <h1>Hello</h1>
+      <Router>
+        {/* Home */}
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+      </Router>
+
     </>
   )
 }
