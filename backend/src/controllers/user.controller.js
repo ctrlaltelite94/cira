@@ -1,51 +1,45 @@
-// controllers/userController.js
-
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 
-// Register a new user
 export const userRegister = async (req, res) => {
   try {
-    const { name, phone, email, longitude, latitude } = req.body;
+    const { name, phone, email, password, latitude, longitude } = req.body;
 
-    // Basic input validation
     if (
       !name ||
       !phone ||
       !email ||
-      longitude === undefined ||
-      latitude === undefined
+      !password ||
+      latitude == null ||
+      longitude == null
     ) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
-    // Check if user already exists by email or phone
-    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: "User already exists." });
+      return res.status(400).json({ message: "Email already registered." });
     }
 
-    // Create new user
-    const newUser = new User({
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
       name,
       phone,
       email,
+      password: hashedPassword,
       location: {
         type: "Point",
         coordinates: [longitude, latitude],
       },
     });
 
-    // Save user to database
-    await newUser.save();
-
-    return res
-      .status(201)
-      .json({ message: "User registered successfully", user: newUser });
+    const savedUser = await user.save();
+    res.status(201).json({ message: "User registered", user: savedUser });
   } catch (error) {
     console.error("Error registering user:", error);
-    return res
-      .status(500)
-      .json({ message: "Server error. Please try again later." });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
