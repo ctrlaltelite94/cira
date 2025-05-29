@@ -26,6 +26,7 @@ const IncidentSchema = new mongoose.Schema(
         required: false,
       },
     },
+    etr: String,
 
     reporter: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 
@@ -37,7 +38,7 @@ const IncidentSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["Reported", "In Progress", "Resolved", "Cancelled"],
+      enum: ["Reported", "Responding", "Resolved", "Cancelled"],
       default: "Reported",
     },
   },

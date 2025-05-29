@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs'
+import Incident from '../models/incident.model.js'
 import { GenerateSignature } from "../utility/userUtility.js";
 
 export const userRegister = async (req, res) => {
@@ -37,10 +38,14 @@ export const profile = (req, res) => {
     console.log({message: "You are in profile route"})
 }
 
-export const myIncidents = (req, res) => {
+export const myIncidents = async (req, res) => {
+    
     try {
+        const id = req.user.userId;
+        const incident = await Incident.findOne({ reporter: id })
         
+        res.json(incident);
     } catch (error) {
-        
+        console.log(error)
     }
 }
