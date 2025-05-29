@@ -5,7 +5,9 @@ const UserSchema = new mongoose.Schema(
   {
     name: String,
     phone: String,
-    email: String,
+    email: { type: String, unique: true },
+    password: { type: String, required: true },
+    address: String,
     location: {
       type: { type: String, default: "Point" },
       coordinates: [Number], // [longitude, latitude]
