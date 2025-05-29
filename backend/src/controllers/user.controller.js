@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs'
+import { GenerateSignature } from "../utility/userUtility.js";
 
 export const userRegister = async (req, res) => {
 
@@ -20,6 +21,14 @@ export const userRegister = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
+
+    const token = await GenerateSignature(newUser._id);
+
+    res.cookie("cira_user_auth_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+    });
 
     res.status(201).json(savedUser)
 }
