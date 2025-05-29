@@ -1,5 +1,5 @@
 // models/Incident.js
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const IncidentSchema = new mongoose.Schema(
   {
@@ -22,4 +22,5 @@ const IncidentSchema = new mongoose.Schema(
 
 IncidentSchema.index({ location: "2dsphere" });
 
-module.exports = mongoose.model("Incident", IncidentSchema);
+const Incident = mongoose.model("Incident", IncidentSchema)
+export default Incident;
