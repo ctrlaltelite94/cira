@@ -1,5 +1,6 @@
 import express from 'express'
-import { getIncidents, responderRegister } from '../controllers/responder.controller.js';
+import { getAllIncidents, getIncidentById, responderRegister, updateIncident } from '../controllers/responder.controller.js';
+import { ValidateResponderSignature } from '../utility/AuthUtility/Authenticate.js';
 
 const router = express.Router();
 
@@ -9,6 +10,10 @@ router.get('/', (req, res) => {
 })
 router.post('/register', responderRegister)
 
-router.get('/getincidents', getIncidents);
+router.get('/getincidents', ValidateResponderSignature, getAllIncidents);
+
+router.get('/incident/:id', ValidateResponderSignature, getIncidentById);
+
+router.patch('/incident/:id', ValidateResponderSignature, updateIncident )
 
 export default router;
