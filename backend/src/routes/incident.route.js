@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/create', Authenticate, createIncident);
 
-router.get('/', getAllIncidents)
+router.get('/:id', )
 
 
 
