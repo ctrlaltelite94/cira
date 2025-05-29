@@ -3,8 +3,10 @@ import cookieParser from 'cookie-parser';
 //import cors from 'cors'
 
 import userRoutes from '../routes/user.routes.js'
+import responderRoutes from '../routes/responder.route.js'
 import incidentRoutes from '../routes/incident.route.js'
 import userAuthRoutes from '../routes/userAuth.route.js'
+import responderAuthRoutes from '../routes/responderAuth.route.js'
 
 export default async (app) => {
 
@@ -18,9 +20,12 @@ export default async (app) => {
     // }));
 
     
-    app.use('/api/user', userRoutes)
-    app.use('/api/auth/user', userAuthRoutes)
-    app.use('/api/incident', incidentRoutes)
+    app.use('/api/user', userRoutes);
+    app.use('/api/responder', responderRoutes);
+    app.use('/api/auth/user', userAuthRoutes);
+    app.use('/api/auth/responder', responderAuthRoutes);
+    app.use('/api/incident', incidentRoutes);
+
     
     console.log("Helllllooo")
     app.get('/', (req, res) => {
