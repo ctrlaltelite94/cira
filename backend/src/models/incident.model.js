@@ -26,9 +26,10 @@ const IncidentSchema = new mongoose.Schema(
         required: false,
       },
     },
-    etr: String,
+    etr: Number,
 
     reporter: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    respondingService: [{ type: mongoose.Schema.Types.ObjectId, ref: "Responder" }],
 
     requestedResponse: {
       type: String,
@@ -41,6 +42,7 @@ const IncidentSchema = new mongoose.Schema(
       enum: ["Reported", "Responding", "Resolved", "Cancelled"],
       default: "Reported",
     },
+    refNum: String,
   },
   { timestamps: true }
 );
