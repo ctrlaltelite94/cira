@@ -4,7 +4,10 @@ const IncidentSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
-
+    incidenType: {
+      type: String,
+      required: true
+    },
     // Manual address input
     address: {
       type: String,
