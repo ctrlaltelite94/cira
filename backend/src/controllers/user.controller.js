@@ -42,9 +42,9 @@ export const myIncidents = async (req, res) => {
     
     try {
         const id = req.user.userId;
-        const incident = await Incident.findOne({ reporter: id })
+        const incidents = await Incident.find({ reporter: id })
         
-        res.json(incident);
+        return res.status(200).json(incidents);
     } catch (error) {
         console.log(error)
     }
