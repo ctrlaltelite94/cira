@@ -1,0 +1,20 @@
+.col-sm-6,
+.img-fluid {
+    margin-top: 1rem;
+}
+
+.form-outline{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#intro {
+    background-image: url(https://policinginsight.com/wp-content/uploads/2022/04/iStock-458568435-South-African-police.jpg);
+    height: 100vh;
+}
+
+@media (min-width: 992px) {
+    #intro {
+        margin-top: -58.59px;
+    }
+}
