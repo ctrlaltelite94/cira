@@ -1,12 +1,11 @@
 import express from 'express'
-import { createIncident, getAllIncidents  } from '../controllers/incident.controller.js';
-import { Authenticate } from '../middleware/userAuth.js';
+import { createIncident  } from '../controllers/incident.controller.js';
+import { ValidateUserSignature } from '../utility/AuthUtility/Authenticate.js';
 
 const router = express.Router();
 
-router.post('/create', Authenticate, createIncident);
+router.post('/create', ValidateUserSignature, createIncident);
 
-router.get('/:id', )
 
 
 
