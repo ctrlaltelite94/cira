@@ -16,7 +16,7 @@ const SignIn = () => {
                                             <MDBInput
                                                 label="Email address"
                                                 type="email"
-                                                id="form1Example1"
+                                                id="email_login"
                                                 className="form-control"
                                             />
                                         </div>
@@ -24,7 +24,7 @@ const SignIn = () => {
                                             <MDBInput
                                                 label="Password"
                                                 type="password"
-                                                id="form1Example1"
+                                                id="password_login"
                                                 className="form-control"
                                             />
                                         </div>
