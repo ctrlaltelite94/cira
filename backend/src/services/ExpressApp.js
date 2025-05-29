@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 
 import userRoutes from '../routes/user.routes.js'
 import incidentRoutes from '../routes/incident.route.js'
+import userAuthRoutes from '../routes/userAuth.route.js'
+
 export default async (app) => {
 
     app.use(express.json());
@@ -17,6 +19,7 @@ export default async (app) => {
 
     
     app.use('/api/user', userRoutes)
+    app.use('/api/auth/user', userAuthRoutes)
     app.use('/api/incident', incidentRoutes)
     
     console.log("Helllllooo")
