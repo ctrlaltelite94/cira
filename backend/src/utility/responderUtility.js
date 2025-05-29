@@ -6,3 +6,10 @@ export const GenerateStationCode = () => {
     return `${randomLetters()}${randomLetters()}-${randomDigits()}`;
 };
   
+
+export const generateReferenceNumber = () => {
+    const random = Math.random().toString(36).substr(2, 4).toUpperCase(); // 4 alphanumeric chars
+    const timestamp = Date.now().toString().slice(-2); // last 2 digits of timestamp
+    return `I${random}${timestamp}`;
+  };
+  
