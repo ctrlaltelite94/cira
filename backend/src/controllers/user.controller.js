@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs'
 import Incident from '../models/incident.model.js'
-import { GenerateSignature } from "../utility/userUtility.js";
+import { GenerateUserSignature } from "../utility/userUtility.js";
 
 export const userRegister = async (req, res) => {
 
@@ -23,7 +23,7 @@ export const userRegister = async (req, res) => {
 
     const savedUser = await newUser.save();
 
-    const token = await GenerateSignature(newUser._id);
+    const token = await GenerateUserSignature(newUser._id);
 
     res.cookie("cira_user_auth_token", token, {
         httpOnly: true,
