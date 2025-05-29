@@ -19,7 +19,9 @@ export const userRegister = async (req, res) => {
         location
     });
 
-    res.status(201).json(newUser)
+    const savedUser = await newUser.save();
+
+    res.status(201).json(savedUser)
 }
 
 export const profile = (req, res) => {
