@@ -2,37 +2,26 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
+    name: String,
     phone: String,
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
+    address: String,
     location: {
-      address: {
+      type: {
         type: String,
-        required: true,
+        enum: ["Point"],
+        required: true
       },
       coordinates: {
-        type: {
-          type: String,
-          enum: ["Point"],
-          default: "Point",
-        },
-        coordinates: {
-          type: [Number], // [longitude, latitude]
-          required: true,
-        },
-      },
+        type: [Number],
+        required: true
+      }
     },
-    password: {
-      type: String,
-      required: true,
-    },
+    password: String
   },
   {
     toJSON: {
