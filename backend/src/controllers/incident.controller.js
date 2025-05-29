@@ -2,14 +2,15 @@ import Incident from '../models/incident.model.js'
 
 export const createIncident = async (req, res) => {
     try {
-        const { title, incidenType,  description, location, reporter, requestedResponse } = req.body;
+        const userId = req.user.userId
+        const { title, incidenType,  description, location, requestedResponse } = req.body;
         
         const newIncident = new Incident({
             title,
             description,
             incidenType,
             location,
-            reporter,
+            reporter: userId,
             requestedResponse,
         })
 
