@@ -1,8 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import App from "./services/ExpressApp.js";
-import dbConn from './services/db.js'
-import "dotenv/config";
-
+import dbConn from "./services/db.js";
 
 const StartServer = async () => {
   const app = express();
@@ -12,12 +12,8 @@ const StartServer = async () => {
   });
   const PORT = 3001;
 
-  
   await App(app);
   await dbConn();
-
-
-  
 
   app.listen(PORT, () => {
     console.log(`Listening on Port ${PORT}`);
