@@ -7,7 +7,7 @@ router.get('/', profile);
 
 router.post('/register', userRegister);
 
-
+router.get('/myincidents', myIncidents)
 
 
 
