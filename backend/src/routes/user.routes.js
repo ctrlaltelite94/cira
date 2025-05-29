@@ -1,6 +1,5 @@
 import express from 'express'
 import { userRegister, profile, myIncidents } from '../controllers/user.controller.js';
-import { Authenticate } from '../middleware/userAuth.js';
 import { ValidateUserSignature } from '../utility/AuthUtility/Authenticate.js';
 
 const router = express.Router();
