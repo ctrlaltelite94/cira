@@ -3,6 +3,7 @@ import Layout from "./Layout/Layout"
 import Home from "./pages/Home"
 import SignIn from "./pages/user/SignIn"
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import SignUp from "./pages/user/SignUp";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
           path="/signup"
           element={
             <Layout>
-              <Home />
+              <SignUp />
             </Layout>
           }
         />
