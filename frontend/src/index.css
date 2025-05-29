@@ -1,0 +1,44 @@
+.col-sm-6,
+.img-fluid {
+    margin-top: 1rem;
+}
+
+.form-outline {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+#intro {
+    background-image: url(https://policinginsight.com/wp-content/uploads/2022/04/iStock-458568435-South-African-police.jpg);
+    height: 100vh;
+}
+
+#register-form {
+    padding: 20px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#register-form form {
+    padding-left: 0;
+    padding-right: 0;
+    padding: 30px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 400px;
+}
+
+.vh-100 {
+    background: ghostwhite;
+}
+
+img {
+    border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+    #intro {
+        margin-top: -58.59px;
+    }
+}
