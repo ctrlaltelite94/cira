@@ -12,15 +12,15 @@ export const ValidateUserSignature = async (req, res, next) => {
   }
 };
 
-export const ValidateResponderSignature = async (req) => {
+export const ValidateResponderSignature = async (req, res, next) => {
     const token = req.cookies["cira_responder_auth_token"];
     if (!token) return null;
   
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
-      req.admin = decoded;
-      return decoded;
+      req.responder = decoded;
+      next();
     } catch {
-      return null;
+      return res.status(401).json({ message: "Invalid token" });
     }
 };
