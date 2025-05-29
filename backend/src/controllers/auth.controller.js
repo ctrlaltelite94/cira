@@ -1,8 +1,3 @@
+export const userLogin = (req, res) => {};
 
-export const userLogin = (req, res) => {
-
-}
-
-export const userLogout = (req, res) => {
-    
-}
+export const userLogout = (req, res) => {};
