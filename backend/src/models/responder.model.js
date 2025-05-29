@@ -1,15 +1,18 @@
 // models/Responder.js
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ResponderSchema = new mongoose.Schema(
   {
-    name: String,
+    stationName: String,
     type: { type: String, enum: ["Police", "Ambulance"], required: true },
-    unitNumber: String,
-    status: {
+    stationCode: {
       type: String,
-      enum: ["Available", "Dispatched", "Unavailable"],
-      default: "Available",
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true,
     },
     location: {
       type: { type: String, default: "Point" },
@@ -22,4 +25,5 @@ const ResponderSchema = new mongoose.Schema(
 
 ResponderSchema.index({ location: "2dsphere" });
 
-module.exports = mongoose.model("Responder", ResponderSchema);
+const Responder = mongoose.model("Responder", ResponderSchema);
+export default Responder;
