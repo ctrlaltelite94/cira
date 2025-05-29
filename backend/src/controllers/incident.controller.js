@@ -17,6 +17,5 @@ export const createIncident = (req, res) => {
     } catch (error) {
         
     }
-    
 
 }
