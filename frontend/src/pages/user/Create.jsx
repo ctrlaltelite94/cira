@@ -2,7 +2,9 @@ import React from 'react'
 
 const Create = () => {
     return (
-        <div>Create</div>
+        <div>Create \
+            title, description, accient type, address, location, requested repsone
+        </div>
     )
 }
 
