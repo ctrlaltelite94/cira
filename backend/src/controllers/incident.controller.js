@@ -1,17 +1,21 @@
 import Incident from '../models/incident.model.js'
+import { generateReferenceNumber } from '../utility/responderUtility.js';
 
 export const createIncident = async (req, res) => {
     try {
         const userId = req.user.userId
-        const { title, incidenType,  description, location, requestedResponse } = req.body;
-        
+        console.log(userId);
+        const { title, incidenType,  description, location, address, requestedResponse } = req.body;
+        const ref = generateReferenceNumber()
         const newIncident = new Incident({
             title,
             description,
             incidenType,
+            address,
             location,
             reporter: userId,
             requestedResponse,
+            refNum: ref
         })
 
         const incident = await newIncident.save();
@@ -23,6 +27,4 @@ export const createIncident = async (req, res) => {
 
 }
 
-export const getAllIncidents = (req, res) => {
 
-}
