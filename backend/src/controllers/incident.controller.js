@@ -19,3 +19,7 @@ export const createIncident = (req, res) => {
     }
 
 }
+
+export const getAllIncidents = (req, res) => {
+    
+}
