@@ -1,19 +1,44 @@
-// models/User.js
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     phone: String,
-    email: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     location: {
-      type: { type: String, default: "Point" },
-      coordinates: [Number], // [longitude, latitude]
+      address: {
+        type: String,
+        required: true,
+      },
+      coordinates: {
+        type: {
+          type: String,
+          enum: ["Point"],
+          default: "Point",
+        },
+        coordinates: {
+          type: [Number], // [longitude, latitude]
+          required: true,
+        },
+      },
+    },
+    password: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-UserSchema.index({ location: "2dsphere" });
+// For geo queries on location.coordinates
+UserSchema.index({ "location.coordinates": "2dsphere" });
 
-module.exports = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
+export default User;
