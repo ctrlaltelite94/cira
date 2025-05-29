@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, } from "mdb-react-ui-kit";
 
 const SignIn = () => {
+    // State to toggle password visibility
+    const [showPassword, setShowPassword] = useState(false);
+
+    // Toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevState) => !prevState);
+    };
     return (
         <div>
             <div id='intro' className='bg-image shadow-2-strong'>
@@ -23,10 +30,21 @@ const SignIn = () => {
                                         <div className='form-outline mb-4"'>
                                             <MDBInput
                                                 label="Password"
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 id="password_login"
                                                 className="form-control"
                                             />
+                                            <MDBIcon
+                                                className="position-absolute top-50 translate-middle-y"
+                                                icon={showPassword ? "eye-slash" : "eye"}
+                                                style={{
+                                                    right: "10px",
+                                                    cursor: "pointer",
+                                                }}
+                                                onClick={togglePasswordVisibility}>
+
+                                            </MDBIcon>
+
                                         </div>
                                         <div class="row mb-4">
                                             <div className="col d-flex justify-content-center">
