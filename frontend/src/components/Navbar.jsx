@@ -1,9 +1,31 @@
 import React from 'react'
 import { useAppContext } from '../contexts/appContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { logout } from '../apiClient'
+
 
 const Navbar = () => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, userType } = useAppContext();
+  const navigate = useNavigate();
+  const { showToast } = useAppContext();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: logout,// Add signOut function in apiClient
+    onSuccess: async () => {
+      showToast({ message: "Signed Out Successfully", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      navigate("/");
+    },
+    onError: (error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  const handleLogout = () => {
+    mutation.mutate();
+  };
 
   return (
     <div>
@@ -40,10 +62,12 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/user/profile">Profile</Link>
+                    <Link className="nav-link" to={userType === "responder" ? "/responder/dashboard" : "/user/profile"}>
+                      {userType === "responder" ? "Dashboard" : "Profile"}
+                    </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/logout">Logout</Link>
+                  <li className="nav-item" onClick={handleLogout}>
+                    <p className='nav-link'>Logout</p>
                   </li>
                 </>
               ) : (

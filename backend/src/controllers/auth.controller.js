@@ -35,7 +35,7 @@ export const userLogout = (req, res, next) => {
             expires: new Date(0),
         })
 
-        return res.status(200).json({message: "User logged out"})
+        return res.status(200).json({message: "Logged out"})
     } catch {
         next(error)
     }

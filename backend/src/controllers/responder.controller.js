@@ -36,7 +36,8 @@ export const responderRegister = async (req, res) => {
 
 export const getAllIncidents = async (req, res) => {
     try {
-        const id = req.responder.responderId;
+        console.log(req.responder)
+        const id = req.responder.id;
 
         const responder = await Responder.findById(id);
         const type = responder.type

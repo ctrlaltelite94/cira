@@ -52,6 +52,7 @@ const Home = () => {
               We're here to support you during urgent moments with these trusted services.
             </p>
           </div>
+
           <div className='row g-4'>
             <div className='col-md-4'>
               <div className='card border-0 shadow-sm text-center h-100'>
@@ -89,6 +90,20 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="py-5 text-center bg-light">
+        <div className="container">
+          <h2 className="fw-bold mb-3">View Real-Time Insights</h2>
+          <a
+            href="https://app.powerbi.com/links/-4ENGhCBel?ctid=a3f14f21-237f-4028-b978-425eb768a716&pbi_source=linkShare"
+            className="btn btn-outline-primary btn-lg"
+            target="_blank"
+            rel="noopener noreferrer"
+            role="button"
+          >
+            View Dashboard
+          </a>
         </div>
       </section>
     </div>

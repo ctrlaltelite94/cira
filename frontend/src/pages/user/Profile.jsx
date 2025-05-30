@@ -48,6 +48,9 @@ const Profile = () => {
                                 <p>
                                     <span className="font-medium">Status:</span> {incident.status}
                                 </p>
+                                <p>
+                                    <span className="font-medium">Reference Number:</span> {incident.refNum}
+                                </p>
                                 {incident.address ? (
                                     <p>
                                         <span className="font-medium">Address:</span> {incident.address}

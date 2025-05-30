@@ -5,11 +5,13 @@ import SignIn from "./pages/user/SignIn"
 import SignUp from "./pages/user/SignUp";
 import ResponderSignIn from "./pages/responder/ResponderSignIn";
 import ResponderSignUp from "./pages/responder/ResponderSignUp";
-
+import Dashboard from "./pages/responder/Dashboard";
 import { useAppContext } from "./contexts/appContext";
 import { Navigate } from "react-router-dom";
 import Profile from "./pages/user/Profile";
 import Create from "./pages/user/Create";
+import UpdateIncident from "./pages/responder/UpdateIncident";
+import Incident from "./pages/responder/Incident";
 
 export const ProtectedUserRoute = ({ children }) => {
   const { isLoggedIn, userType } = useAppContext();
@@ -19,6 +21,7 @@ export const ProtectedUserRoute = ({ children }) => {
 // ProtectedResponderRoute.tsx
 export const ProtectedResponderRoute = ({ children }) => {
   const { isLoggedIn, userType } = useAppContext();
+  console.log(isLoggedIn, userType)
   return isLoggedIn && userType === "responder" ? children : <Navigate to="/" replace />;
 };
 
@@ -61,7 +64,27 @@ function App() {
           element={
             <ProtectedResponderRoute>
               <Layout>
-
+                <Dashboard />
+              </Layout>
+            </ProtectedResponderRoute>
+          }
+        />
+        <Route
+          path="/responder/dashboard/incident/:id"
+          element={
+            <ProtectedResponderRoute>
+              <Layout>
+                <Incident />
+              </Layout>
+            </ProtectedResponderRoute>
+          }
+        />
+        <Route
+          path="/responder/dashboard/incident/update/:id"
+          element={
+            <ProtectedResponderRoute>
+              <Layout>
+                <UpdateIncident />
               </Layout>
             </ProtectedResponderRoute>
           }
