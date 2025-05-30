@@ -40,7 +40,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/profile">Profile</Link>
+                    <Link className="nav-link" to="/user/profile">Profile</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/logout">Logout</Link>

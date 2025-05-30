@@ -41,7 +41,7 @@ const SignUp = () => {
     };
 
     console.log(submissionData);
-    // mutation.mutate(submissionData);
+    mutation.mutate(submissionData);
   });
 
 

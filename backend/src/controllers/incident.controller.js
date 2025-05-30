@@ -3,14 +3,14 @@ import { generateReferenceNumber } from '../utility/responderUtility.js';
 
 export const createIncident = async (req, res) => {
     try {
-        const userId = req.user.userId
+        const userId = req.user.id
         console.log(userId);
-        const { title, incidenType,  description, location, address, requestedResponse } = req.body;
+        const { title, incidentType,  description, location, address, requestedResponse } = req.body;
         const ref = generateReferenceNumber()
         const newIncident = new Incident({
             title,
             description,
-            incidenType,
+            incidentType,
             address,
             location,
             reporter: userId,

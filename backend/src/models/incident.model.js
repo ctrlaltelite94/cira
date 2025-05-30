@@ -4,7 +4,7 @@ const IncidentSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
-    incidenType: {
+    incidentType: {
       type: String,
       required: true
     },

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import * as apiClient from '../apiClient.js'
+import Toast from "../components/Toast.jsx";
 
 
 const appContext = React.createContext(undefined);
@@ -8,7 +9,7 @@ const appContext = React.createContext(undefined);
 export const AppContextProvider = ({ children }) => {
     const [toast, setToast] = useState(undefined);
 
-    const { isError } = useQuery({
+    const { data, isError } = useQuery({
         queryKey: ["validateToken"],
         queryFn: apiClient.validateToken,
         retry: false,
@@ -23,6 +24,8 @@ export const AppContextProvider = ({ children }) => {
             value={{
                 showToast,
                 isLoggedIn: !isError,
+                userType: data?.userType || null,
+                userId: data?.id || null, // Optional: add ID if needed
             }}
         >
             {toast && (

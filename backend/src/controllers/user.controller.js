@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs'
 import Incident from '../models/incident.model.js'
 import { GenerateUserSignature } from "../utility/userUtility.js";
+import mongoose from "mongoose";
 
 export const userRegister = async (req, res) => {
 
@@ -44,10 +45,11 @@ export const profile = (req, res) => {
 }
 
 export const myIncidents = async (req, res) => {
-    
+    console.log("my incidents:", req.user )
     try {
-        const id = req.user.userId;
-        const incidents = await Incident.find({ reporter: id })
+        const id = req.user.id;
+        
+        const incidents = await Incident.find({ reporter: new mongoose.Types.ObjectId(id) });
         
         return res.status(200).json(incidents);
     } catch (error) {
