@@ -5,7 +5,8 @@ import { GenerateUserSignature } from "../utility/userUtility.js";
 
 export const userRegister = async (req, res) => {
 
-    const { name, phone, email, password, location } = req.body;
+    try {
+        const { name, phone, email, password, location } = req.body;
 
     const existingUser = await User.findOne({ email: email });
 
@@ -31,7 +32,11 @@ export const userRegister = async (req, res) => {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
     });
 
-    res.status(201).json(savedUser)
+    res.status(201).json({message: "User registered", user: savedUser})
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({message: "Something went wrong"})
+    }
 }
 
 export const profile = (req, res) => {
