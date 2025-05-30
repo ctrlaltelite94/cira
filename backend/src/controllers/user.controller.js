@@ -25,7 +25,7 @@ export const userRegister = async (req, res) => {
 
     const token = await GenerateUserSignature(newUser._id);
 
-    res.cookie("cira_user_auth_token", token, {
+    res.cookie("cira_auth_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days

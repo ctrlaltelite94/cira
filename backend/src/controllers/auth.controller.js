@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import Responder from '../models/responder.model.js'
 import { GenerateUserSignature, GenerateResSignature, passwordCompare } from "../utility/userUtility.js";
 
+  
 export const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -13,9 +14,9 @@ export const userLogin = async (req, res) => {
         const isMatch = await passwordCompare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Username/Password dont match" })
         
-        const token = await GenerateUserSignature(user._id.toString());
+        const token = await GenerateUserSignature(user._id.toString(), "user");
 
-        res.cookie("cira_user_auth_token", token, {
+        res.cookie("cira_auth_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
@@ -30,7 +31,7 @@ export const userLogin = async (req, res) => {
 
 export const userLogout = (req, res, next) => {
     try {
-        res.cookie("cira_user_auth_token", "", {
+        res.cookie("cira_auth_token", "", {
             expires: new Date(0),
         })
 
@@ -51,9 +52,9 @@ export const responderLogin = async (req, res) => {
         const isMatch = await passwordCompare(password, responder.password);
         if (!isMatch) return res.status(400).json({ message: "Username/Password dont match" })
         
-        const token = await GenerateResSignature(responder._id.toString());
+        const token = await GenerateResSignature(responder._id.toString(), "responder");
 
-        res.cookie("cira_responder_auth_token", token, {
+        res.cookie("cira_auth_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
@@ -68,7 +69,7 @@ export const responderLogin = async (req, res) => {
 
 export const responderLogout = (req, res, next) => {
     try {
-        res.cookie("cira_responder_auth_token", "", {
+        res.cookie("cira_auth_token", "", {
             expires: new Date(0),
         })
 

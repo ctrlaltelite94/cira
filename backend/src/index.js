@@ -10,7 +10,7 @@ const StartServer = async () => {
     console.log(`Incoming ${req.method} request to ${req.url}`);
     next();
   });
-  const PORT = 3001;
+  const PORT = process.env.PORT | 3001;
 
   
   await App(app);

@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom"
 import Layout from "./Layout/Layout"
 import Home from "./pages/Home"
 import SignIn from "./pages/user/SignIn"
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import SignUp from "./pages/user/SignUp";
 
 function App() {

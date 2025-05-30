@@ -1,45 +1,39 @@
-import React from 'react'
+import React from 'react';
+import Hero from '../components/Home/Hero';
 
 const Home = () => {
   return (
     <div>
-      <div className='container my-5'>
-        <div className='row text-center flex-column-reverse flex-sm-row'>
-          <div className='col-12 col-sm-4 order-sm-1'>
-            <img
-              src='https://www.hrw.org/sites/default/files/styles/embed_xxl/public/media_2021/11/202111africa_southafrica_gbv.jpg?itok=iX_i2tfm'
-              className='img-fluid'
-              alt='Image'
-            />
-          </div>
+      <Hero />
 
-          <div className='col-12 col-sm-8 order-sm-2'>
-            <h1 className='display-1'>Why Cira? </h1>
-            <div className='row text-center'>
-              <div class='col-sm-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='card-text'>
-                      CIRA, or the Citizen Incident Response Agent, plays a
-                      crucial role in bridging the gap between medical services
-                      and law enforcement. By fostering collaboration, CIRA
-                      ensures that both sectors can respond swiftly and
-                      effectively to emergencies, ultimately saving lives and
-                      improving outcomes.
+      {/* Why CIRA Section */}
+      <section className='py-5 bg-light'>
+        <div className='container'>
+          <div className='row align-items-center'>
+            <div className='col-lg-6 mb-4 mb-lg-0'>
+              <img
+                src='https://www.hrw.org/sites/default/files/styles/embed_xxl/public/media_2021/11/202111africa_southafrica_gbv.jpg?itok=iX_i2tfm'
+                className='img-fluid rounded shadow-sm'
+                alt='Why CIRA'
+              />
+            </div>
+            <div className='col-lg-6'>
+              <h2 className='fw-bold mb-4'>Why CIRA?</h2>
+              <div className='row g-4'>
+                <div className='col-md-6'>
+                  <div className='bg-white p-4 shadow-sm rounded h-100'>
+                    <p className='mb-0'>
+                      CIRA bridges the gap between medical services and law
+                      enforcement. It ensures swift, collaborative emergency
+                      responses — saving lives and improving outcomes.
                     </p>
                   </div>
                 </div>
-              </div>
-              <div class='col-sm-6'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <p className='card-text'>
-                      Moreover, CIRA enhances community safety by promoting a
-                      unified approach to incident management. When medical
-                      services and police work together, they can address not
-                      only the immediate health needs of individuals but also
-                      the broader implications of incidents, such as public
-                      safety concerns.
+                <div className='col-md-6'>
+                  <div className='bg-white p-4 shadow-sm rounded h-100'>
+                    <p className='mb-0'>
+                      By uniting police and health services, CIRA promotes
+                      community safety and coordinated incident response.
                     </p>
                   </div>
                 </div>
@@ -47,66 +41,58 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className='container my-5'>
-        <div className='text-center mb-4'>
-          <h2 className='fw-bold'>Our Emergency Services</h2>
-          <p className='text-muted'>
-            We are here to assist you during emergencies with these reliable
-            services.
-          </p>
-        </div>
-        <div className='row justify-content-center'>
-          {/* Card 1 */}
-          <div className='col-md-4 mb-4'>
-            <div className='card text-center h-100'>
-              <div className='card-body'>
-                <div className='mb-4'>
-                  <i className='fas fa-ambulance fa-3x text-primary'></i>
+      {/* Emergency Services Section */}
+      <section className='py-5'>
+        <div className='container'>
+          <div className='text-center mb-5'>
+            <h2 className='fw-bold'>Our Emergency Services</h2>
+            <p className='text-muted'>
+              We're here to support you during urgent moments with these trusted services.
+            </p>
+          </div>
+          <div className='row g-4'>
+            <div className='col-md-4'>
+              <div className='card border-0 shadow-sm text-center h-100'>
+                <div className='card-body'>
+                  <i className='fas fa-ambulance fa-3x text-primary mb-3'></i>
+                  <h5 className='card-title fw-bold'>Ambulance Services</h5>
+                  <p className='card-text'>
+                    Rapid ambulance dispatch for immediate medical assistance.
+                  </p>
                 </div>
-                <h5 className='card-title fw-bold'>Ambulance Services</h5>
-                <p className='card-text'>
-                  Quick and efficient ambulance services to get you the help you
-                  need immediately.
-                </p>
               </div>
             </div>
-          </div>
-          {/* Card 2 */}
-          <div className='col-md-4 mb-4'>
-            <div className='card text-center h-100'>
-              <div className='card-body'>
-                <div className='mb-4'>
-                  <i className='fas fa-clock fa-3x text-danger'></i>
+
+            <div className='col-md-4'>
+              <div className='card border-0 shadow-sm text-center h-100'>
+                <div className='card-body'>
+                  <i className='fas fa-clock fa-3x text-danger mb-3'></i>
+                  <h5 className='card-title fw-bold'>Urgent Response</h5>
+                  <p className='card-text'>
+                    Quick on-the-scene help to ensure timely action and safety.
+                  </p>
                 </div>
-                <h5 className='card-title fw-bold'>Urgent Response</h5>
-                <p className='card-text'>
-                  Fast and timely response to Emergency to minimize damage and
-                  ensure safety.
-                </p>
               </div>
             </div>
-          </div>
-          {/* Card 3 */}
-          <div className='col-md-4 mb-4'>
-            <div className='card text-center h-100'>
-              <div className='card-body'>
-                <div className='mb-4'>
-                  <i className='fas fa-shield-alt fa-3x text-success'></i>
+
+            <div className='col-md-4'>
+              <div className='card border-0 shadow-sm text-center h-100'>
+                <div className='card-body'>
+                  <i className='fas fa-shield-alt fa-3x text-success mb-3'></i>
+                  <h5 className='card-title fw-bold'>SAPS Support</h5>
+                  <p className='card-text'>
+                    Direct coordination with SAPS for public security and law enforcement.
+                  </p>
                 </div>
-                <h5 className='card-title fw-bold'>SAPS Support</h5>
-                <p className='card-text'>
-                  Direct connection to the South African Police Service (SAPS)
-                  for security and safety.
-                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

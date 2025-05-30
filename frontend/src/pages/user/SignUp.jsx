@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody, MDBIcon } from "mdb-react-ui-kit";
 
 const SignUp = () => {
   // State to toggle password visibility
@@ -116,7 +115,7 @@ const SignUp = () => {
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block" data-mdb-ripple-init>Register</button>
-                    <div class="row mb-2" style={{marginTop: "1rem"}}>
+                    <div class="row mb-2" style={{ marginTop: "1rem" }}>
                       <div className="col text-start">
                         <p>Already have an account? </p>
                       </div>

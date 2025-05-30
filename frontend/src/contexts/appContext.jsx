@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
+import * as apiClient from '../apiClient.js'
 
 
-
-const AppContext = React.createContext(undefined);
+const appContext = React.createContext(undefined);
 
 export const AppContextProvider = ({ children }) => {
     const [toast, setToast] = useState(undefined);
@@ -19,7 +19,7 @@ export const AppContextProvider = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider
+        <appContext.Provider
             value={{
                 showToast,
                 isLoggedIn: !isError,
@@ -33,14 +33,14 @@ export const AppContextProvider = ({ children }) => {
                 />
             )}
             {children}
-        </AppContext.Provider>
+        </appContext.Provider>
     );
 };
 
 export const useAppContext = () => {
-    const context = useContext(AppContext);
-    if (!context) {
+    const AppContext = useContext(appContext);
+    if (!AppContext) {
         throw new Error("useAppContext must be used within an AppContextProvider");
     }
-    return context;
+    return AppContext;
 };
