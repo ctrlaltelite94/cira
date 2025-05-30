@@ -14,6 +14,7 @@ const ResponderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    address: {type: String, required: false},
     location: {
       type: { type: String, default: "Point" },
       coordinates: [Number],
