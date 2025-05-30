@@ -1,76 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
-    // State to toggle password visibility
     const [showPassword, setShowPassword] = useState(false);
 
-    // Toggle password visibility
-    const togglePasswordVisibility = () => {
-        setShowPassword((prevState) => !prevState);
-    };
+    const togglePasswordVisibility = () => setShowPassword(prev => !prev);
+
     return (
-        <div>
-            <div id='intro' className='bg-image shadow-2-strong'>
-                <div className='mask d-flex align-items-center h-100' style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}>
-                    <MDBContainer>
-                        <MDBRow className='justify-content-center'>
-                            <MDBCol xl="5" md="8">
-                                <MDBCard className='p-5'>
-                                    <form>
-                                        <h2 className='display-4'>Login</h2>
-                                        <div className='form-outline mb-4"'>
-                                            <MDBInput
-                                                label="Email address"
-                                                type="email"
-                                                id="email_login"
-                                                className="form-control"
-                                            />
-                                        </div>
-                                        <div className='form-outline mb-4"'>
-                                            <MDBInput
-                                                label="Password"
-                                                type={showPassword ? "text" : "password"}
-                                                id="password_login"
-                                                className="form-control"
-                                            />
-                                            <MDBIcon
-                                                className="position-absolute top-50 translate-middle-y"
-                                                icon={showPassword ? "eye-slash" : "eye"}
-                                                style={{
-                                                    right: "10px",
-                                                    cursor: "pointer",
-                                                }}
-                                                onClick={togglePasswordVisibility}>
+        <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+            <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>
+                <h2 className="text-center mb-4">Sign In</h2>
+                <form>
+                    {/* Email */}
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email address</label>
+                        <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+                    </div>
 
-                                            </MDBIcon>
+                    {/* Password */}
+                    <div className="mb-3 position-relative">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control"
+                            id="password"
+                            placeholder="Enter your password"
+                        />
+                        <span
+                            className="position-absolute top-50 end-0 translate-middle-y me-3"
+                            style={{ cursor: 'pointer' }}
+                            onClick={togglePasswordVisibility}
+                        >
+                            <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                        </span>
+                    </div>
 
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div className="col d-flex justify-content-center">
+                    {/* Remember me & Forgot password */}
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="remember" />
+                            <label className="form-check-label" htmlFor="remember">Remember me</label>
+                        </div>
+                        <a href="#" className="text-decoration-none small">Forgot password?</a>
+                    </div>
 
-                                                <div className="form-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                                                    <label className="form-check-label" for="form1Example3">Remember me</label>
-                                                </div>
-                                            </div>
+                    {/* Submit */}
+                    <button type="submit" className="btn btn-primary w-100">Sign In</button>
 
-                                            <div className="col text-center">
+                    {/* Sign up link */}
 
-                                                <a href="#!">Forgot password?</a>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-block" data-mdb-ripple-init>Sign in</button>
-                                    </form>
+                    <p className="mt-3 text-center text-decoration-none ">
+                        Don't have an account? {" "}
+                        <Link to={'/signup'}><a href="#" className="text-decoration-none">Sign Up</a></Link>
 
-                                </MDBCard>
-                            </MDBCol>
+                    </p>
 
-                        </MDBRow>
-                    </MDBContainer>
-                </div>
+                </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SignIn
+export default SignIn;
