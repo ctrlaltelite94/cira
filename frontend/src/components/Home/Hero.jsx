@@ -18,8 +18,8 @@ const Hero = () => {
             <div className="text-center bg-dark bg-opacity-50 p-5 rounded">
                 <h1 className="display-4 fw-bold">Emergency</h1>
                 <p className="lead mb-4">Worry not, report it now.</p>
-                <Link className="btn btn-outline-light btn-lg" to="/report">
-                    Report Now!
+                <Link className="btn btn-outline-light btn-lg">
+                    Create
                 </Link>
             </div>
         </div>

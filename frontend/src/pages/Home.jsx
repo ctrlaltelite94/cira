@@ -92,7 +92,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="py-5 text-center bg-light">
+      <section id='bi' className="py-5 text-center bg-light">
         <div className="container">
           <h2 className="fw-bold mb-3">View Real-Time Insights</h2>
           <a
