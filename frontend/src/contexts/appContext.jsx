@@ -30,6 +30,7 @@ export const AppContextProvider = ({ children }) => {
                 isLoggedIn: !isError,
                 userType: data?.userType || null,
                 userId: data?.id || null,
+                user: data?.user || null
             }}
         >
             {toast && (
