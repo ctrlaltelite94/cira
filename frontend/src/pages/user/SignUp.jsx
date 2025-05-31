@@ -157,7 +157,7 @@ const SignUp = () => {
               <div className="mb-3">
                 <label className="form-label">
                   Email
-                  <input type="text" className="form-control" id="address"
+                  <input type="text" className="form-control" id="email"
                     {...register("email", { required: "This field is required" })}
                   />
                   {errors.email && (
@@ -238,7 +238,7 @@ const SignUp = () => {
               <div className="text-center mt-3">
                 <p className="mb-0">Already have an account? {" "}
                   <Link to={'/login'}>
-                    <a href="#">Login</a>
+                    Login
                   </Link>
                 </p>
               </div>
