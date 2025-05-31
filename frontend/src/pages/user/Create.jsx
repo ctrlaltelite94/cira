@@ -102,9 +102,8 @@ const Create = () => {
         <div className="mt-5">
             {refNum ? (
                 <div className="alert alert-success text-center">
-                    <h4 className="mb-2">Incident Created Successfully</h4>
+                    <h4 className="mb-2">{message} successfully</h4>
                     <p><strong>Reference Number:</strong> {refNum}</p>
-                    <p>{message}</p>
                 </div>
             ) : (
                 <>
