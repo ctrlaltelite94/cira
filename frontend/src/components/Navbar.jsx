@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { logout } from '../apiClient'
 
-
 const Navbar = () => {
   const { isLoggedIn, userType } = useAppContext();
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const Navbar = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: logout,// Add signOut function in apiClient
+    mutationFn: logout,
     onSuccess: async () => {
       showToast({ message: "Signed Out Successfully", type: "SUCCESS" });
       await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
@@ -28,62 +27,52 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
-        <div className="container">
-          <Link className="navbar-brand fw-bold fs-2 text-primary" to="/">
+    <div className='w-full bg-gray-100 py-10'>
+      <div className='w-[70%] mx-auto px-4'>
+        <div className='flex justify-between items-center'>
+          <Link to="/" className='text-blue-600 font-bold text-4xl'>
             CIRA
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">About Us</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">Contact Us</Link>
-              </li>
+          <ul className='flex items-center gap-6 font-medium'>
+            <li className=''>
+              <Link to="/" className='hover:underline'>Home</Link>
+            </li>
+            <li className=''>
+              <Link to="/about" className='hover:underline'>About</Link>
+            </li>
+            <li className=''>
+              <Link to="/incidents" className='hover:underline'>Incidents</Link>
+            </li>
+            {/* Add more <li> items here */}
+            {isLoggedIn ? (
+              <>
+                <li className=''>
+                  <Link
+                    to={userType === 'responder' ? '/responder/dashboard' : '/user/profile'}
+                    className='hover:underline'
+                  >
+                    {userType === 'responder' ? 'Dashboard' : 'Profile'}
+                  </Link>
+                </li>
+                <li className=' cursor-pointer hover:underline' onClick={handleLogout}>
+                  Logout
+                </li>
+              </>
+            ) : (
+              <>
+                <li className=''>
+                  <Link to="/login" className='hover:underline'>Login</Link>
+                </li>
+                <li className='bg-green-600 py-2 px-2 rounded-md text-white'>
+                  <Link to="/incidents" className='hover:underline'>Get Started</Link>
+                </li>
 
-              {isLoggedIn ? (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to={userType === "responder" ? "/responder/dashboard" : "/user/profile"}>
-                      {userType === "responder" ? "Dashboard" : "Profile"}
-                    </Link>
-                  </li>
-                  <li className="nav-item" onClick={handleLogout}>
-                    <p className='nav-link'>Logout</p>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/signup">Sign Up</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
+              </>
+            )}
+          </ul>
         </div>
-      </nav>
+      </div>
     </div>
   );
 };
