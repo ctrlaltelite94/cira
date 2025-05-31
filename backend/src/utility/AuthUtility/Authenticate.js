@@ -44,7 +44,7 @@ export const validateToken = async (req, res) => {
 
     if (!user) return res.status(401).json({ isValid: false });
 
-    return res.status(200).json({ isValid: true, userType, id });
+    return res.status(200).json({ isValid: true, userType, id, user });
   } catch (err) {
     return res.status(401).json({ isValid: false });
   }
