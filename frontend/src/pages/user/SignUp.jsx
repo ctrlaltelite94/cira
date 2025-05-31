@@ -92,53 +92,62 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container-fluid my-5 py-5 bg-light min-vh-100">
-      <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-md-8 col-lg-6 col-xl-5 mb-4">
+    <div className="min-h-screen py-10">
+      <div className="flex flex-col lg:flex-row justify-center items-center w-[90%] max-w-6xl mx-auto">
+        {/* Image Section */}
+        <div className="w-full lg:w-1/2 mb-8 lg:mb-0 px-4">
           <img
             src="https://images2.minutemediacdn.com/image/upload/c_fill,w_1200,ar_1:1,f_auto,q_auto,g_auto/images/voltaxMediaLibrary/mmsport/mentalfloss/01grp9b6xsdrhgqfpcc1.jpg"
-            className="img-fluid rounded"
             alt="Sign Up"
+            className="rounded-lg w-full h-auto"
           />
         </div>
-        <div className="col-md-8 col-lg-6 col-xl-4">
-          <div className="card shadow p-4">
-            <h4 className="mb-3 text-center">Create an account with CIRA</h4>
-            <form onSubmit={onSubmit}>
-              {/* First Name */}
-              <div className="mb-3">
-                <label className="form-label">
-                  Name
-                  <input type="text" className="form-control mt-2" id="name"
-                    {...register("name", { required: "This field is required" })}
-                  />
-                  {errors.name && (
-                    <span className="text-danger">{errors.name.message}</span>
-                  )}
-                </label>
 
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2 px-4">
+          <div className="bg-white shadow-lg rounded-lg p-8">
+            <h4 className="text-xl font-semibold text-center mb-6">
+              Create an account with CIRA
+            </h4>
+            <form onSubmit={onSubmit} className="space-y-4">
+              {/* Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  {...register("name", { required: "This field is required" })}
+                />
+                {errors.name && (
+                  <span className="text-red-500 text-sm">{errors.name.message}</span>
+                )}
               </div>
 
               {/* Address */}
-              <div className="mb-3">
-                <label className="form-label">Address
-                  <input type="text" className="form-control" id="address"
-                    {...register("address", { required: "This field is required" })}
-                  />
-                  {errors.address && (
-                    <span className="text-danger">{errors.address.message}</span>
-                  )}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Address
                 </label>
-
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  {...register("address", { required: "This field is required" })}
+                />
+                {errors.address && (
+                  <span className="text-red-500 text-sm">{errors.address.message}</span>
+                )}
               </div>
 
               {/* Location */}
-              <div className="mb-3">
-                <label className="form-label">Location</label>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Location
+                </label>
                 <input
                   type="text"
-                  className="form-control"
-                  id="location"
+                  className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-100"
                   value={
                     formData.location.coordinates.length
                       ? `${formData.location.coordinates[1]}, ${formData.location.coordinates[0]}`
@@ -146,107 +155,117 @@ const SignUp = () => {
                   }
                   readOnly
                 />
-                <button type="button" onClick={getLocation} className="btn btn-secondary mt-2">
+                <button
+                  type="button"
+                  onClick={getLocation}
+                  className="mt-2 inline-block bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
+                >
                   Get My Location
                 </button>
-                <div className="form-text text-muted">{locationStatus}</div>
+                <div className="text-gray-500 text-sm mt-1">{locationStatus}</div>
               </div>
 
-
               {/* Email */}
-              <div className="mb-3">
-                <label className="form-label">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email
-                  <input type="text" className="form-control" id="email"
-                    {...register("email", { required: "This field is required" })}
-                  />
-                  {errors.email && (
-                    <span className="text-danger">{errors.email.message}</span>
-                  )}
                 </label>
-
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  {...register("email", { required: "This field is required" })}
+                />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">{errors.email.message}</span>
+                )}
               </div>
 
               {/* Password */}
-              <div className="mb-3 position-relative">
-                <label htmlFor="password" className="form-label">
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Password
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control"
-                    id="password"
-                    {...register("password", {
-                      required: "This field is required",
-                      minLength: {
-                        value: 6,
-                        message: "Password must be at least 6 characters",
-                      },
-                    })}
-                  />
-                  {errors.password && (
-                    <span className="text-danger">{errors.password.message}</span>
-                  )}
-                  <span
-                    className="position-absolute top-50 end-0 translate-middle-y me-3"
-                    style={{ cursor: 'pointer' }}
-                    onClick={togglePasswordVisibility}
-                  >
-                    <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                  </span>
                 </label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="w-full border border-gray-300 rounded px-3 py-2 pr-10"
+                  {...register("password", {
+                    required: "This field is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
+                />
+                {errors.password && (
+                  <span className="text-red-500 text-sm">{errors.password.message}</span>
+                )}
+                <span
+                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
+                  onClick={togglePasswordVisibility}
+                >
+                  <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                </span>
               </div>
 
               {/* Confirm Password */}
-              <div className="mb-3 position-relative">
-                <label className="form-label">
+              <div className="relative">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Confirm Password
-
-                  <input
-                    type={viewPassword ? "text" : "password"}
-                    className="form-control"
-                    id="confirm password"
-                    {...register("confirmPassword", {
-                      validate: (val) => {
-                        if (!val) {
-                          return "This field is required";
-                        } else if (watch("password") !== val) {
-                          return "Your passwords do not match ";
-                        }
-                      },
-                    })}
-                  />
-                  {errors.confirmPassword && (
-                    <span className="text-danger">
-                      {errors.confirmPassword.message}
-                    </span>
-                  )}
-                  <span
-                    className="position-absolute top-50 end-0 translate-middle-y me-3"
-                    style={{ cursor: 'pointer' }}
-                    onClick={toggleConfirmPasswordVisibility}
-                  >
-                    <i className={`fas ${viewPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                  </span>
                 </label>
-
+                <input
+                  type={viewPassword ? "text" : "password"}
+                  className="w-full border border-gray-300 rounded px-3 py-2 pr-10"
+                  {...register("confirmPassword", {
+                    validate: (val) => {
+                      if (!val) return "This field is required";
+                      if (watch("password") !== val)
+                        return "Your passwords do not match";
+                    },
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-500 text-sm">
+                    {errors.confirmPassword.message}
+                  </span>
+                )}
+                <span
+                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  <i className={`fas ${viewPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                </span>
               </div>
 
-              {/* Register Button */}
-              <button type="submit" className="btn btn-primary w-100">Register</button>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+              >
+                Register
+              </button>
 
-              {/* Login Link */}
-              <div className="text-center mt-3">
-                <p className="mb-0">Already have an account? {" "}
-                  <Link to={'/login'}>
+              {/* Link to login */}
+              <div className="text-center mt-4">
+                <p className="text-sm">
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-blue-600 hover:underline">
                     Login
                   </Link>
                 </p>
+                <div className='mt-3'>
+                  <p className='text-sm'>Responder? Sign Up {" "}
+                    <Link className="text-blue-600 hover:underline" to={'/responder/signup'}>
+                      Here
+                    </Link>
+                  </p>
+                </div>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -39,16 +39,10 @@ const IncidentCard = ({ incident }) => {
 
             <div className="flex gap-2">
                 <Link
-                    to={`/responder/dashboard/incident/${incident._id}`}
+                    to={`/user/dashboard/incident/${incident._id}`}
                     className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-md"
                 >
                     View
-                </Link>
-                <Link
-                    to={`/responder/dashboard/incident/update/${incident._id}`}
-                    className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-1.5 rounded-md"
-                >
-                    Update
                 </Link>
             </div>
         </div>
