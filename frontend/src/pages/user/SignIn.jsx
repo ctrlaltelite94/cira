@@ -25,7 +25,7 @@ const SignIn = () => {
         onSuccess: async () => {
             showToast({ message: "Sign In Successful", type: "SUCCESS" });
             await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
-            navigate(location.state?.from?.pathname || "/profile");
+            navigate(location.state?.from?.pathname || "/user/profile");
         },
         onError: (error) => {
             showToast({ message: error.message, type: "ERROR" });
@@ -33,7 +33,7 @@ const SignIn = () => {
     })
 
     const onSubmit = handleSubmit((data) => {
-        //console.log(data)
+        console.log(data)
         mutation.mutate(data);
     });
 
@@ -98,7 +98,9 @@ const SignIn = () => {
 
                     <p className="mt-3 text-center text-decoration-none ">
                         Don't have an account? {" "}
-                        <Link to={'/signup'}><a href="#" className="text-decoration-none">Sign Up</a></Link>
+                        <Link className='text-decoration-none' to={'/signup'}>
+                            Sign Up
+                        </Link>
 
                     </p>
 
