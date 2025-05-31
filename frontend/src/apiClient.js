@@ -11,7 +11,8 @@ export const validateToken = async () => {
     throw new Error("Token not valid");
   }
 
-  return res.json();
+  const data = res.json();
+  return data;
 };
 
 
