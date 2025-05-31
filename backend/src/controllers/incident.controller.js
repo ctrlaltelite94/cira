@@ -19,7 +19,7 @@ export const createIncident = async (req, res) => {
         })
 
         const incident = await newIncident.save();
-        res.status(201).json({ message: "Incident created", refNum: incident.refNum });
+        res.status(201).json({ message: "Incident Created", refNum: incident.refNum });
         
     } catch (error) {
         console.log(error);
