@@ -17,9 +17,9 @@ const Dashboard = () => {
             }
         }
     })
-    
+
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8 mt-5 mb-5">
+        <div className="px-4 py-8 mt-5 mb-5">
             <h1 className="text-3xl font-bold mb-6 py-5"> Latest Incidents</h1>
 
 
