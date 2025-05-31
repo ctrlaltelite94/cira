@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../../contexts/appContext';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import * as apiClient from '../../apiClient'
 import { useForm } from 'react-hook-form'
@@ -12,12 +12,11 @@ const Create = () => {
             coordinates: [],
         },
     });
-
+    const [copied, setCopied] = useState(false);
     const [refNum, setRefNum] = useState(null);
     const [message, setMessage] = useState('')
 
-    const { showToast } = useAppContext()
-    const navigate = useNavigate();
+    const { showToast } = useAppContext();
     const queryClient = useQueryClient();
 
     const {
@@ -33,7 +32,7 @@ const Create = () => {
             setMessage(data.message)
             showToast({ message: "Created Incident", type: "SUCCESS" });
             await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
-            navigate(location.state?.from?.pathname || "/user/profile");
+
         },
         onError: (error) => {
             showToast({ message: error.message, type: "ERROR" });
@@ -49,7 +48,6 @@ const Create = () => {
         //console.log(fullData);
         mutation.mutate(fullData);
     });
-
 
 
     const getLocation = () => {
@@ -98,12 +96,41 @@ const Create = () => {
         );
     };
 
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(refNum).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000); // reset after 2s
+        });
+    };
+
+
     return (
         <div className="mt-5">
             {refNum ? (
-                <div className="alert alert-success text-center">
-                    <h4 className="mb-2">{message} successfully</h4>
-                    <p><strong>Reference Number:</strong> {refNum}</p>
+                <div className='py-5 h-screen'>
+                    <div className="alert alert-success text-center py-5">
+                        <h4 className="mb-2 text-success">{message} successfully</h4>
+
+                        <div className="flex flex-col items-center">
+                            <p className="py-2">
+                                <strong>Reference Number:</strong> {refNum}
+                            </p>
+
+                            <button
+                                onClick={handleCopy}
+                                className="btn text-white bg-primary"
+                            >
+                                {copied ? "Copied!" : "Copy Ref Number"}
+                            </button>
+                        </div>
+
+                        <div className="mt-4">
+                            <Link to="/user/profile" className="text-decoration-none">
+                                Go to profile
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             ) : (
                 <>
