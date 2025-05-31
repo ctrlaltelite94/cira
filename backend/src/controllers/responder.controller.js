@@ -36,7 +36,7 @@ export const responderRegister = async (req, res) => {
 
 export const getAllIncidents = async (req, res) => {
     try {
-        console.log(req.responder)
+        
         const id = req.responder.id;
 
         const responder = await Responder.findById(id);
@@ -45,9 +45,10 @@ export const getAllIncidents = async (req, res) => {
         const incidents = await Incident.find({
             $or: [
               { requestedResponse: type },
-              { requestedResponse: "Both" }
-            ]
-          });
+              { requestedResponse: "Both" },
+            ],
+        })
+        .populate("reporter", "name email phone"); 
           
 
         if (incidents.length === 0) return res.status(400).json({ message: `There are no incidents for ${type}` })
