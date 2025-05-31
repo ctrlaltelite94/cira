@@ -3,22 +3,20 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
-        // Hero Section
         <div
-            className="d-flex align-items-center justify-content-center text-white"
+            className="flex items-center justify-center text-white h-screen bg-cover bg-center pt-16"
             style={{
                 backgroundImage:
                     "url('https://roadsave.co.za/wp-content/uploads/2022/09/9-11.png')",
-                height: '100vh',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                paddingTop: '60px',
             }}
         >
-            <div className="text-center bg-dark bg-opacity-50 p-5 rounded">
-                <h1 className="display-4 fw-bold">Emergency</h1>
-                <p className="lead mb-4">Worry not, report it now.</p>
-                <Link className="btn btn-outline-light btn-lg">
+            <div className="text-center bg-transparent p-8 rounded-lg  max-w-md mx-4">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Emergency</h1>
+                <p className="text-lg md:text-xl mb-6">Worry not, report it now.</p>
+                <Link
+                    to="/create"
+                    className="inline-block border border-white text-white hover:bg-white hover:text-black transition px-6 py-3 rounded-lg text-lg font-medium"
+                >
                     Create
                 </Link>
             </div>
