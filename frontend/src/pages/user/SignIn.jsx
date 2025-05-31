@@ -3,17 +3,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../contexts/appContext';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import * as apiClient from '../../apiClient'
+import * as apiClient from '../../apiClient';
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
-
-    const togglePasswordVisibility = () => setShowPassword(prev => !prev);
+    const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
     const navigate = useNavigate();
     const { showToast } = useAppContext();
     const queryClient = useQueryClient();
     const location = useLocation();
+
     const {
         register,
         formState: { errors },
@@ -23,59 +23,58 @@ const SignIn = () => {
     const mutation = useMutation({
         mutationFn: apiClient.loginUser,
         onSuccess: async () => {
-            showToast({ message: "Sign In Successful", type: "SUCCESS" });
-            await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
-            navigate(location.state?.from?.pathname || "/user/profile");
+            showToast({ message: 'Sign In Successful', type: 'SUCCESS' });
+            await queryClient.invalidateQueries({ queryKey: ['validateToken'] });
+            navigate(location.state?.from?.pathname || '/user/profile');
         },
         onError: (error) => {
-            showToast({ message: error.message, type: "ERROR" });
+            showToast({ message: error.message, type: 'ERROR' });
         },
-    })
+    });
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data)
         mutation.mutate(data);
     });
 
-
     return (
-        <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-            <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>
-                <h2 className="text-center mb-4">Sign In</h2>
-                <form onSubmit={onSubmit}>
+        <div className="min-h-screen flex items-center justify-center px-4">
+            <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-xl">
+                <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
+                <form onSubmit={onSubmit} className="space-y-5">
                     {/* Email */}
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email address
-                            <input type="email" className="form-control mt-2" id="email" placeholder="Enter your email"
-                                {...register("email", { required: "This field is required" })}
-                            />
-                            {errors.email && (
-                                <span className="text-danger">{errors.email.message}</span>
-                            )}
                         </label>
-
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            {...register('email', { required: 'This field is required' })}
+                            className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        {errors.email && (
+                            <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>
+                        )}
                     </div>
 
                     {/* Password */}
-                    <div className="mb-3 position-relative">
-                        <label htmlFor="password" className="form-label">
+                    <div className="relative">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                             Password
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                className="form-control mt-2"
-                                id="password"
-                                placeholder="Enter your password"
-                                {...register("password", { required: "This field is required" })}
-                            />
-                            {errors.password && (
-                                <span className="text-danger">{errors.password.message}</span>
-                            )}
                         </label>
-
+                        <input
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            {...register('password', { required: 'This field is required' })}
+                            className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        {errors.password && (
+                            <p className="text-sm text-red-600 mt-1">{errors.password.message}</p>
+                        )}
                         <span
-                            className="position-absolute top-50 end-0 translate-middle-y me-3"
-                            style={{ cursor: 'pointer' }}
+                            className="absolute top-9 right-3 text-gray-600 cursor-pointer"
                             onClick={togglePasswordVisibility}
                         >
                             <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
@@ -83,27 +82,29 @@ const SignIn = () => {
                     </div>
 
                     {/* Remember me & Forgot password */}
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="remember" />
-                            <label className="form-check-label" htmlFor="remember">Remember me</label>
-                        </div>
-                        <a href="#" className="text-decoration-none small">Forgot password?</a>
+                    <div className="flex items-center justify-between text-sm">
+                        <label className="flex items-center">
+                            <input type="checkbox" className="mr-2 text-blue-500 focus:ring-0" />
+                            Remember me
+                        </label>
+                        <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
                     </div>
 
                     {/* Submit */}
-                    <button type="submit" className="btn btn-primary w-100">Sign In</button>
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+                    >
+                        Sign In
+                    </button>
 
                     {/* Sign up link */}
-
-                    <p className="mt-3 text-center text-decoration-none ">
-                        Don't have an account? {" "}
-                        <Link className='text-decoration-none' to={'/signup'}>
+                    <p className="text-center text-sm text-gray-600 mt-4">
+                        Don’t have an account?{' '}
+                        <Link to="/signup" className="text-blue-600 hover:underline">
                             Sign Up
                         </Link>
-
                     </p>
-
                 </form>
             </div>
         </div>

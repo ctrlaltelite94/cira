@@ -19,7 +19,7 @@ const Profile = () => {
     });
 
     return (
-        <div className="max-w-6xl mx-auto py-8 mt-5 mb-5">
+        <div className="py-8 mt-5 mb-5">
             <h1 className="text-3xl font-bold mb-6 py-5">Hi {userInfo.name}!</h1>
 
             <Link to={"/user/create"}>
@@ -27,13 +27,13 @@ const Profile = () => {
             </Link>
 
             {data ? (
-                <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {data.map((incident) => (
                         <div
                             key={incident._id}
                             className="border rounded-xl shadow-sm p-5 bg-white space-y-2 mb-5"
                         >
-                            <h2 className="text-xl font-semibold text-blue-800">{incident.title}</h2>
+                            <h2 className="font-semibold text-3xl text-blue-600">{incident.title}</h2>
                             <p className="text-gray-600 line-clamp-2">{incident.description}</p>
 
                             <div className="text-sm text-gray-800 space-y-1">
