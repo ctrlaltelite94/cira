@@ -1,12 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../contexts/appContext";
 import { useQuery } from "@tanstack/react-query";
 import * as apiClient from "../../apiClient";
 
 const Profile = () => {
-    const { showToast } = useAppContext();
-
+    const { showToast, user } = useAppContext();
+    const userInfo = user;
     const { data } = useQuery({
         queryKey: ["fetchMyIncidents"],
         queryFn: async () => {
@@ -20,8 +19,8 @@ const Profile = () => {
     });
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8 mt-5 mb-5">
-            <h1 className="text-3xl font-bold mb-6 py-5">My Incidents</h1>
+        <div className="max-w-6xl mx-auto py-8 mt-5 mb-5">
+            <h1 className="text-3xl font-bold mb-6 py-5">Hi {userInfo.name}!</h1>
 
             <Link to={"/user/create"}>
                 <button className="btn btn-primary my-3">Create</button>
